@@ -33,25 +33,6 @@
   --base-100: #ffffff;
   --rounded-btn: 0.6rem;
 }
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
 
-    /* AG Food Brand Green: #1D7239 */
-    --primary: 142 60% 28%; 
-    --primary-foreground: 210 40% 98%;
-
-    /* AG Food Charcoal: #333333 */
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 210 40% 98%;
-
-    /* AG Food Red: #E30613 */
-    --accent: 357 95% 45%;
-    --accent-foreground: 210 40% 98%;
-
-    --radius: 0.6rem; /* Matching your 'More' button radius */
-  }
-}
 
 * { font-family: var(--font-sans); }
