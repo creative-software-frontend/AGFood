@@ -1,26 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
+@plugin "daisyui";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* AG Food Senior Dev Palette */
+  --color-brand-green: #1d7239;    /* Primary Button/Top Bar */
+  --color-brand-red: #e30613;      /* "Shop Now" Accent */
+  --color-brand-charcoal: #333333; /* Main Nav Bar */
+  --color-brand-muted: #4b5563;    /* Contact info text */
+  
+  --color-primary: var(--color-brand-green);
+  --color-secondary: var(--color-brand-charcoal);
+  --color-accent: var(--color-brand-red);
+  
+  --color-base-100: #ffffff;
+  --color-base-200: #f8fafc;
+  
+  --font-sans: "Poppins", ui-sans-serif, system-ui;
+  --radius-btn: 0.6rem; 
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@plugin "daisyui/theme" {
+  --name: "agfood-pro";
+  --default: true;
+  --primary: #1d7239;
+  --primary-content: #ffffff;
+  --secondary: #333333;
+  --secondary-content: #ffffff;
+  --accent: #e30613;
+  --accent-content: #ffffff;
+  --neutral: #333333;
+  --base-100: #ffffff;
+  --rounded-btn: 0.6rem;
 }
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    /* AG Food Brand Green: #1D7239 */
+    --primary: 142 60% 28%; 
+    --primary-foreground: 210 40% 98%;
+
+    /* AG Food Charcoal: #333333 */
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* AG Food Red: #E30613 */
+    --accent: 357 95% 45%;
+    --accent-foreground: 210 40% 98%;
+
+    --radius: 0.6rem; /* Matching your 'More' button radius */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+* { font-family: var(--font-sans); }
