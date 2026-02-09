@@ -1,10 +1,12 @@
-import About from "@/components/sections/About";
+import AboutContent from "@/components/sections/about/AboutContent";
+import AboutHero from "@/components/sections/about/AboutHero";
+
 
 export default function AboutPage() {
   return (
     <main>
-      <h1 className="text-4xl font-bold text-center my-10">About Us</h1>
-      <About />
+      <AboutHero />
+      <AboutContent />
     </main>
   );
 }
