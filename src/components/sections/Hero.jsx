@@ -98,7 +98,7 @@ export default function Hero() {
   if (!isMounted) return null;
 
   return (
-    <section className="relative w-full min-h-screen lg:h-[90vh] overflow-hidden bg-white pt-20 pb-20 lg:pt-32 lg:pb-12">
+    <section className="relative w-full overflow-hidden bg-white pt-20 pb-20 lg:pt-12 lg:pb-12">
       
       <div ref={sliderRef} className="keen-slider h-full">
         {slides.map((slide, index) => (
@@ -159,10 +159,11 @@ export default function Hero() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
+
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: .95 }}
-                      className="w-full sm:w-auto px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
+                      className="w-full sm:w-1/2 md:w-1/2 px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
                       style={{ background: "#e30613" }}
                     >
                       {slide.cta}
@@ -171,7 +172,7 @@ export default function Hero() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: .95 }}
-                      className="w-full sm:w-auto px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
+                      className="w-full sm:w-1/2 md:w-1/2 px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
                       style={{ background: "#1d7239" }}
                     >
                       {slide.store}
