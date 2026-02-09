@@ -10,7 +10,7 @@ const ExportSection = () => {
       {/* 1. Background Image Layer (The Map) */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/world-map-bg.png" 
+          src="/world_map_bg.png" 
           alt="Export Background Map"
           fill
           className="object-contain object-top pt-12" // Anchors map to top with some padding

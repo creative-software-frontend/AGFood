@@ -85,7 +85,7 @@ const Footer = () => {
                                 className="block"
                             >
                                 <Image
-                                    src="/ag-food-logo.png"
+                                    src="/ag_food_logo.png"
                                     alt="AG Food Logo"
                                     width={200}
                                     height={100}
