@@ -8,7 +8,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
 
           {/* IMAGE (will appear first on mobile) */}
-          <div className="order-1 md:order-2 relative">
+          <div className="order-1 relative">
             <div className="rounded-2xl overflow-hidden border border-[#E2E8F0] shadow-lg">
               <img
                 src="/product-chicken.jpg"
@@ -19,7 +19,7 @@ export default function About() {
           </div>
 
           {/* TEXT CONTENT */}
-          <div className="order-2 md:order-1">
+          <div className="order-2">
 
             <span className="text-sm font-semibold tracking-wider text-[#2FBF71] uppercase">
               Our Story
@@ -42,7 +42,7 @@ export default function About() {
 
             {/* BUTTON */}
             <Link href="/about">
-              <button className="bg-[#2FBF71] hover:bg-[#1F7A4D] text-white font-semibold px-7 sm:px-8 py-3.5 sm:py-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+              <button className="bg-[#e30613] hover:bg-[#1F7A4D] text-white font-semibold px-7 sm:px-8 py-3.5 sm:py-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
                 Learn More About Us
               </button>
             </Link>
