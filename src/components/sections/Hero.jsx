@@ -98,169 +98,152 @@ export default function Hero() {
   if (!isMounted) return null;
 
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden bg-[#ffffff]">
-
+    <section className="relative w-full min-h-screen lg:h-[90vh] overflow-hidden bg-white pt-20 pb-20 lg:pt-32 lg:pb-12">
+      
       <div ref={sliderRef} className="keen-slider h-full">
-
         {slides.map((slide, index) => (
-          <div key={index} className="keen-slider__slide relative">
+          <div key={index} className="keen-slider__slide relative h-full">
+            
+            <div className="max-w-7xl mx-auto px-4 lg:px-8 h-full flex items-center">
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full py-8 lg:py-0">
 
-            <div className="relative h-full flex items-center">
-              <div className="container mx-auto px-6">
+                {/* LEFT CONTENT (Text) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                  className="space-y-4 md:space-y-6 text-center lg:text-left order-2 lg:order-1"
+                >
+                  <div className="flex items-center justify-center lg:justify-start gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#e30613]" />
+                    <span className="text-xs md:text-sm font-semibold tracking-widest text-[#1d7239]">
+                      {slide.highlight}
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                    <span className="block text-[#333333]">{slide.title}</span>
+                    <span className="block text-[#1d7239]">{slide.subtitle}</span>
+                  </h1>
 
-{/* LEFT */}
-<motion.div
-  initial={{ opacity: 0, x: -30 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.7 }}
-  className="space-y-6"
->
+                  <p className="text-base md:text-lg text-[#4b5563] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    {slide.description}
+                  </p>
 
-<div className="flex items-center gap-2">
-  <div className="w-2 h-2 rounded-full bg-[#e30613]" />
-  <span className="text-sm font-semibold tracking-widest text-[#1d7239]">
-    {slide.highlight}
-  </span>
-</div>
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3">
+                    {slide.features.map((f, i) => (
+                      <div key={i}
+                        className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border text-xs md:text-sm font-medium"
+                        style={{
+                          background: "#1d723910",
+                          borderColor: "#1d723925",
+                          color: "#1d7239"
+                        }}>
+                        ✓ {f}
+                      </div>
+                    ))}
+                  </div>
 
-<h1 className="text-5xl font-bold">
-  <span className="block text-[#333333]">{slide.title}</span>
-  <span className="block text-[#1d7239]">{slide.subtitle}</span>
-</h1>
+                  <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6">
+                    <div>
+                        <p className="text-3xl md:text-4xl font-black text-[#1d7239]">
+                        ৳{slide.price}
+                        <span className="text-sm md:text-base font-normal text-[#4b5563] ml-1">{slide.unit}</span>
+                        </p>
+                    </div>
+                    <div className="h-8 w-[2px] bg-gray-200 hidden sm:block"></div>
+                    <p className="text-sm md:text-lg font-semibold text-[#333333] leading-tight max-w-[200px]">
+                      {slide.quality}
+                    </p>
+                  </div>
 
-<p className="text-lg text-[#4b5563] max-w-xl">
-  {slide.description}
-</p>
+                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: .95 }}
+                      className="w-full sm:w-auto px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
+                      style={{ background: "#e30613" }}
+                    >
+                      {slide.cta}
+                    </motion.button>
 
-<div className="flex flex-wrap gap-3">
-{slide.features.map((f,i)=>(
-  <div key={i}
-    className="px-4 py-2 rounded-full border text-sm"
-    style={{
-      background:"#1d723915",
-      borderColor:"#1d723940",
-      color:"#333333"
-    }}>
-    ✓ {f}
-  </div>
-))}
-</div>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: .95 }}
+                      className="w-full sm:w-auto px-10 py-3 md:py-4 rounded-full text-white font-bold shadow-xl transition-all"
+                      style={{ background: "#1d7239" }}
+                    >
+                      {slide.store}
+                    </motion.button>
+                  </div>
+                </motion.div>
 
-<div className="flex items-center gap-4">
-  <p className="text-4xl font-bold text-[#1d7239]">
-    ৳{slide.price}
-    <span className="text-base text-[#4b5563]">{slide.unit}</span>
-  </p>
-  <p className="text-lg font-semibold text-[#333333]">
-    {slide.quality}
-  </p>
-</div>
+                {/* RIGHT CONTENT (Image) */}
+                <motion.div
+                  initial={{ opacity: 0, scale: .8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: .7 }}
+                  className="flex justify-center lg:justify-end order-1 lg:order-2"
+                >
+                  <div className="relative bg-[#f8fafc] p-4 sm:p-8 lg:p-12 rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl border border-gray-100">
+                    <div className="relative w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] lg:w-[380px] lg:h-[380px]">
+                      <Image
+                        src={slide.image}
+                        alt={slide.subtitle}
+                        fill
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
 
-<p className="text-[#1d7239] font-medium">{slide.meatType}</p>
+                    <div
+                      className="absolute -top-2 -right-2 lg:top-4 lg:-right-4 text-white px-4 py-1.5 lg:px-5 lg:py-2 rounded-full text-[10px] lg:text-sm font-black shadow-lg"
+                      style={{ background: "#e30613" }}
+                    >
+                      NEW ARRIVAL
+                    </div>
+                  </div>
+                </motion.div>
 
-<div className="flex gap-4">
-
-<motion.button
-whileHover={{scale:1.05}}
-whileTap={{scale:.95}}
-className="px-8 py-4 rounded-full text-white font-bold shadow-lg"
-style={{background:"#e30613"}}
->
-{slide.cta}
-</motion.button>
-
-<motion.button
-whileHover={{scale:1.05}}
-whileTap={{scale:.95}}
-className="px-8 py-4 rounded-full text-white font-bold shadow-lg"
-style={{background:"#1d7239"}}
->
-{slide.store}
-</motion.button>
-
-</div>
-
-</motion.div>
-
-{/* RIGHT IMAGE */}
-<motion.div
-initial={{opacity:0,scale:.9}}
-animate={{opacity:1,scale:1}}
-transition={{duration:.7}}
-className="flex justify-center"
->
-
-<div className="relative bg-[#f8fafc] p-8 rounded-2xl shadow-xl">
-
-<div className="relative w-[350px] h-[350px]">
-<Image
- src={slide.image}
- alt=""
- fill
- className="object-contain"
-/>
-</div>
-
-<div
-className="absolute -top-3 -right-3 text-white px-4 py-1 rounded-full text-sm font-bold"
-style={{background:"#e30613"}}
->
-NEW
-</div>
-
-<div
-className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-white px-6 py-2 rounded-full font-bold"
-style={{background:"#1d7239"}}
->
-৳{slide.price}
-</div>
-
-</div>
-
-</motion.div>
-
-                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-{/* ARROWS */}
-{loaded && instanceRef.current && (
-<>
-<button
-onClick={()=>instanceRef.current.prev()}
-className="absolute left-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow text-[#333333]"
->
-‹
-</button>
+      {/* ARROWS - Hidden on small mobile for cleaner UI */}
+      {loaded && instanceRef.current && (
+        <div className="hidden sm:block">
+          <button
+            onClick={() => instanceRef.current.prev()}
+            className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/80 backdrop-blur rounded-full shadow-lg text-[#333333] hover:bg-[#1d7239] hover:text-white transition-all z-10 flex items-center justify-center text-xl lg:text-2xl"
+          >
+            ‹
+          </button>
 
-<button
-onClick={()=>instanceRef.current.next()}
-className="absolute right-5 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow text-[#333333]"
->
-›
-</button>
-</>
-)}
+          <button
+            onClick={() => instanceRef.current.next()}
+            className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white/80 backdrop-blur rounded-full shadow-lg text-[#333333] hover:bg-[#1d7239] hover:text-white transition-all z-10 flex items-center justify-center text-xl lg:text-2xl"
+          >
+            ›
+          </button>
+        </div>
+      )}
 
-{/* DOTS */}
-<div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-{slides.map((_,i)=>(
-<button
-key={i}
-onClick={()=>instanceRef.current?.moveToIdx(i)}
-className={`h-2 rounded-full transition-all ${
-currentSlide===i
-? "w-8 bg-[#1d7239]"
-: "w-2 bg-[#33333350]"
-}`}
-></button>
-))}
-</div>
+      {/* DOTS - Adjusted position for mobile spacing */}
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => instanceRef.current?.moveToIdx(i)}
+            className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${currentSlide === i
+                ? "w-8 md:w-10 bg-[#1d7239]"
+                : "w-2 md:w-2.5 bg-gray-300"
+              }`}
+          ></button>
+        ))}
+      </div>
 
     </section>
   );
