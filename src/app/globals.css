@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
 @theme {
   /* AG Food Senior Dev Palette */
   --color-brand-green: #1d7239;    /* Primary Button/Top Bar */

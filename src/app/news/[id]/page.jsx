@@ -9,9 +9,10 @@ id: item.id,
 }
 
 
-export default function NewsDetails({ params }) {
+export default async function NewsDetails({ params }) {
+const { id } = await params;
 const news = newsData.find(
-(item) => item.id === params.id
+(item) => item.id === id
 );
 
 

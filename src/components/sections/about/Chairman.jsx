@@ -1,15 +1,15 @@
+import TeamCard from "@/components/ui/TeamCard";
+
 export default function Chairman() {
   return (
     <section className="bg-[#F8FAFC] py-20">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
-        <div className="rounded-2xl overflow-hidden shadow-lg border border-[#E2E8F0]">
-          <img
-            src="/chairman.jpg"
-            alt="Chairman"
-            className="w-full h-[420px] object-cover"
-          />
-        </div>
+        <TeamCard
+          image="/chairman.jpg"
+          name="Mr. Abdul Rahman"
+          role="Chairman"
+        />
 
         <div>
           <h2 className="text-4xl font-bold text-[#0F172A] mb-4">
