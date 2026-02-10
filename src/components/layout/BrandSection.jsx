@@ -1,84 +1,178 @@
 "use client";
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaFacebookF, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { HiMenuAlt3, HiX } from 'react-icons/hi'; // Hamburger and Close icons
 
-const BrandSection = () => (
-    <div className="relative py-6 md:py-4 border-b border-gray-100 overflow-hidden">
-        
-        {/* --- ১. ব্যাকগ্রাউন্ড ইমেজ লেয়ার --- */}
-        <div 
-            className="absolute inset-0 z-0 opacity-[0.1]" // ০.১ দিয়েছি যাতে টেক্সচারটি হালকা দেখায়
-            style={{ 
-                backgroundImage: `url('/menu_bg.png')`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: 'auto',
-                backgroundColor: 'white' // মূল ব্যাকগ্রাউন্ড সাদা থাকবে
-            }}
-        />
+const BrandSection = () => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 flex flex-col items-center justify-between gap-8 md:flex-row">
+    return (
+        <div className="relative py-4 md:py-4 border-b border-gray-100 overflow-hidden bg-white">
 
-            {/* 1. Left: Contact Details */}
-            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-6 sm:gap-10 md:gap-3 lg:gap-8 text-gray-700 text-[16px] sm:text-[17px] md:text-[15px] lg:text-[16px] font-bold order-2 md:order-1 text-center md:text-left">
-                <div className="space-y-3 md:space-y-1">
-                    <div className="flex items-center justify-center md:justify-start gap-3 group cursor-pointer">
-                        <span className="text-xl text-brand-green group-hover:rotate-12 transition-transform">📞</span>
-                        <a href="tel:+8802222286864" className="hover:text-brand-green transition-colors tracking-tight">+880-2-222286864</a>
+            {/* --- background texture --- */}
+            <div
+                className="absolute inset-0 z-0 opacity-[0.1]"
+                style={{
+                    backgroundImage: `url('/menu_bg.png')`,
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: 'auto',
+                }}
+            />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
+
+                {/* 1. LEFT SIDE: Hamburger for Mobile/Tab */}
+                <div className="md:hidden">
+                    <button
+                        onClick={() => setIsDrawerOpen(true)}
+                        className="p-2 text-brand-charcoal hover:text-brand-green transition-colors"
+                    >
+                        <HiMenuAlt3 size={32} />
+                    </button>
+                </div>
+
+                {/* 2. CENTER (DESKTOP) / HIDDEN (MOBILE): Contact Details */}
+                <div className="hidden md:flex flex-col lg:flex-row gap-3 lg:gap-8 text-gray-700 text-[15px] lg:text-[16px] font-bold">
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-3 group cursor-pointer">
+                            <span className="text-xl text-brand-green group-hover:rotate-12 transition-transform">📞</span>
+                            <a href="tel:+8802222286864" className="hover:text-brand-green transition-colors tracking-tight">+880-2-222286864</a>
+                        </div>
+                        <div className="flex items-center gap-3 group cursor-pointer">
+                            <span className="text-xl text-brand-red group-hover:rotate-12 transition-transform">📠</span>
+                            <a href="tel:+8802222264865" className="hover:text-brand-red transition-colors tracking-tight">+880-2-222264865</a>
+                        </div>
                     </div>
-                    <div className="flex items-center justify-center md:justify-start gap-3 group cursor-pointer">
-                        <span className="text-xl text-brand-red group-hover:rotate-12 transition-transform">📠</span>
-                        <a href="tel:+8802222264865" className="hover:text-brand-red transition-colors tracking-tight">+880-2-222264865</a>
+                    <div className="flex items-center gap-3 group cursor-pointer self-start">
+                        <span className="text-xl text-brand-green group-hover:scale-110 transition-transform">✉️</span>
+                        <a href="mailto:info@agfood.com.bd" className="hover:text-brand-green transition-colors hover:underline break-all">info@agfood.com.bd</a>
                     </div>
                 </div>
-                <div className="flex items-center justify-center md:justify-start gap-3 group cursor-pointer self-center md:self-start">
-                    <span className="text-xl text-brand-green group-hover:scale-110 transition-transform">✉️</span>
-                    <a href="mailto:info@agfood.com.bd" className="hover:text-brand-green transition-colors hover:underline break-all">info@agfood.com.bd</a>
+
+                {/* 3. LOGO: Right side on Mobile/Tab, Center on Desktop */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="md:absolute md:left-1/2 md:-translate-x-1/2"
+                >
+                    <Link href="/" className="block">
+                        <Image
+                            src="/ag_food_logo.png"
+                            alt="AG Food Logo"
+                            width={200}
+                            height={100}
+                            priority
+                            className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
+                        />
+                    </Link>
+                </motion.div>
+
+                {/* 4. RIGHT SIDE (DESKTOP ONLY): Social Icons */}
+                <div className="hidden md:flex items-center justify-end">
+                    <div className="flex flex-row items-center gap-4">
+                        <span className="text-[14px] font-black uppercase tracking-[0.1em] text-gray-500 whitespace-nowrap">
+                            Follow Us :
+                        </span>
+                        <div className="flex flex-row items-center gap-4">
+                            <Link href="#" className="text-gray-500 hover:text-[#1877F2] transition-all hover:scale-110">
+                                <FaFacebookF size={18} />
+                            </Link>
+                            <Link href="#" className="text-gray-500 hover:text-[#FF0000] transition-all hover:scale-110">
+                                <FaYoutube size={20} />
+                            </Link>
+                            <Link href="#" className="text-gray-500 hover:text-[#E4405F] transition-all hover:scale-110">
+                                <FaInstagram size={18} />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* 2. Center: Logo */}
-            <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="order-1 md:order-2"
-            >
-                <Link href="/" className="block">
-                    <Image
-                        src="/ag_food_logo.png"
-                        alt="AG Food Logo"
-                        width={200}
-                        height={100}
-                        priority
-                        className="h-16 sm:h-20 md:h-22 lg:h-24 w-auto object-contain transition-all"
-                    />
-                </Link>
-            </motion.div>
+            {/* --- MOBILE DRAWER (MENU) --- */}
+            <AnimatePresence>
+                {isDrawerOpen && (
+                    <>
+                        {/* Overlay: Managed opacity and backdrop-blur */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsDrawerOpen(false)}
+                            className="fixed inset-0 bg-black/20 backdrop-blur-[2px] z-[100] md:hidden"
+                        />
 
-            {/* 3. Right: Social Icons */}
-            <div className="flex items-center justify-center md:justify-end order-3 w-full md:w-auto">
-                <div className="flex flex-row items-center gap-4 sm:gap-6 md:gap-4 bg-white/60 backdrop-blur-sm md:bg-transparent px-4 py-2 md:p-0 rounded-full border border-gray-100 md:border-none shadow-sm md:shadow-none">
-                    <span className="text-[11px] sm:text-[13px] md:text-[14px] font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-gray-500 whitespace-nowrap">
-                        Follow Us :
-                    </span>
+                        {/* Drawer Content */}
+                        <motion.div
+                            initial={{ x: '-100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '-100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="fixed left-0 top-0 h-full w-[300px] bg-white z-[110] shadow-2xl md:hidden p-6 flex flex-col"
+                        >
+                            <div className="flex justify-between items-center mb-8">
+                                <Image src="/ag_food_logo.png" alt="Logo" width={100} height={50} className="h-10 w-auto" />
+                                <button onClick={() => setIsDrawerOpen(false)} className="text-brand-red p-1">
+                                    <HiX size={32} />
+                                </button>
+                            </div>
 
-                    <div className="flex flex-row items-center gap-5 sm:gap-8 md:gap-5">
-                        <Link href="#" target="_blank" className="text-gray-500 hover:text-[#1877F2] transition-all duration-300 hover:scale-125">
-                            <FaFacebookF size={20} className="sm:w-6 sm:h-6 md:w-[18px] md:h-[18px]" />
-                        </Link>
-                        <Link href="#" target="_blank" className="text-gray-500 hover:text-[#FF0000] transition-all duration-300 hover:scale-125">
-                            <FaYoutube size={22} className="sm:w-7 sm:h-7 md:w-[20px] md:h-[20px]" />
-                        </Link>
-                        <Link href="#" target="_blank" className="text-gray-500 hover:text-[#E4405F] transition-all duration-300 hover:scale-125">
-                            <FaInstagram size={20} className="sm:w-6 sm:h-6 md:w-[18px] md:h-[18px]" />
-                        </Link>
-                    </div>
-                </div>
-            </div>
+                            {/* Contact Details */}
+                            <div className="space-y-6 mt-4">
+                                <p className="text-xs font-black uppercase tracking-widest text-gray-400 border-b pb-2">Contact Info</p>
+                                <div className="space-y-4 font-bold text-gray-700">
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-brand-green">📞</span>
+                                        <a href="tel:+8802222286864" className="hover:text-brand-green transition-colors">+880-2-222286864</a>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-brand-red">📠</span>
+                                        <a href="tel:+8802222264865" className="hover:text-brand-red transition-colors">+880-2-222264865</a>
+                                    </div>
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-brand-green">✉️</span>
+                                        <a href="mailto:info@agfood.com.bd" className="break-all hover:text-brand-green transition-colors">info@agfood.com.bd</a>
+                                    </div>
+                                </div>
+                            </div>
 
+                            {/* --- CORRECTED SOCIAL ICONS SECTION --- */}
+                            <div className="mt-auto pt-8 border-t border-gray-100">
+                                <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-4">Follow Us</p>
+                                <div className="flex items-center gap-4">
+                                    {/* Facebook */}
+                                    <Link
+                                        href="#"
+                                        className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-[#1877F2] hover:text-white transition-all shadow-sm"
+                                    >
+                                        <FaFacebookF size={18} />
+                                    </Link>
+
+                                    {/* YouTube */}
+                                    <Link
+                                        href="#"
+                                        className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-[#FF0000] hover:text-white transition-all shadow-sm"
+                                    >
+                                        <FaYoutube size={20} />
+                                    </Link>
+
+                                    {/* Instagram */}
+                                    <Link
+                                        href="#"
+                                        className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-[#E4405F] hover:text-white transition-all shadow-sm"
+                                    >
+                                        <FaInstagram size={18} />
+                                    </Link>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </div>
-    </div>
-);
+    );
+};
 
 export default BrandSection;
